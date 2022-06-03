@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-12">
+        <ng-container *ngIf="(postList | async) as postListItems; else loading">
+          <table mat-table [dataSource]="postListItems" class="mat-elevation-z8 " style="width:100%">
+        
+        
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID</th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef> title </th>
+              <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="subTitle">
+              <th mat-header-cell *matHeaderCellDef> subTitle </th>
+              <td mat-cell *matCellDef="let element"> {{element.subTitle}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="imageUrl">
+              <th mat-header-cell *matHeaderCellDef> ImageUrl </th>
+              <td mat-cell *matCellDef="let element"> {{element.imageUrl}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </ng-container>  
+        
+        <ng-template #loading >
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </ng-template>
+        
+      </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-end">
+      <button mat-fab 
+              matTooltip="click to add new post"
+              (click)="createPost"
+              color="primary">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+
